@@ -2,4 +2,6 @@ streamlit
 gdown
 ultralytics
 opencv-python-headless
+opencv-contrib-python-headless
 shapely
+lap

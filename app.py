@@ -12,6 +12,9 @@ os.system("apt install -y liblapack-dev libopenblas-dev")
 # Now install lap
 os.system("pip install lap")
 
+os.system("pip uninstall -y opencv-python opencv-contrib-python")
+os.system("pip install opencv-python-headless opencv-contrib-python-headless")
+
 # Mock implementation of ObjectCounter
 class MockObjectCounter:
     def __init__(self, view_img=True, reg_pts=None, classes_names=None, draw_tracks=True, line_thickness=2):
