@@ -1,9 +1,26 @@
 import streamlit as st
 import cv2
-from ultralytics import YOLO  # Only import YOLO
+from ultralytics import YOLO
 import gdown
 import os
 from tempfile import NamedTemporaryFile
+
+# Mock implementation of ObjectCounter
+class MockObjectCounter:
+    def __init__(self, view_img=True, reg_pts=None, classes_names=None, draw_tracks=True, line_thickness=2):
+        self.view_img = view_img
+        self.reg_pts = reg_pts
+        self.classes_names = classes_names
+        self.draw_tracks = draw_tracks
+        self.line_thickness = line_thickness
+
+    def start_counting(self, im0, tracks):
+        # Add simplified object counting logic here
+        # This is just a placeholder for demonstration purposes
+        for track in tracks:
+            bbox = track['bbox']
+            cv2.rectangle(im0, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 0, 0), 2)
+        return im0
 
 # Function to download file from Google Drive
 def download_from_google_drive(drive_url, output):
@@ -51,7 +68,7 @@ if uploaded_video is not None:
 
     # Initialize Object Counter
     model = YOLO(model_path)
-    counter = solutions.ObjectCounter(  # Create a mock or substitute if solutions is causing issues
+    counter = MockObjectCounter(
         view_img=True,
         reg_pts=line_points,
         classes_names=model.names,
