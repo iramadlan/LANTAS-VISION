@@ -1,6 +1,6 @@
 import streamlit as st
 import cv2
-from ultralytics import YOLO, solutions
+from ultralytics import YOLO  # Only import YOLO
 import gdown
 import os
 from tempfile import NamedTemporaryFile
@@ -28,7 +28,7 @@ if not os.path.exists(model_path):
 uploaded_video = st.file_uploader("Upload Video", type=["mp4", "avi", "mov", "mkv"])
 
 if uploaded_video is not None:
-    tfile = NamedTemporaryFile(delete=False) 
+    tfile = NamedTemporaryFile(delete=False)
     tfile.write(uploaded_video.read())
     
     cap = cv2.VideoCapture(tfile.name)
@@ -51,7 +51,7 @@ if uploaded_video is not None:
 
     # Initialize Object Counter
     model = YOLO(model_path)
-    counter = solutions.ObjectCounter(
+    counter = solutions.ObjectCounter(  # Create a mock or substitute if solutions is causing issues
         view_img=True,
         reg_pts=line_points,
         classes_names=model.names,
