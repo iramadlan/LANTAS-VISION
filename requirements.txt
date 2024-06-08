@@ -2,3 +2,4 @@ streamlit
 gdown
 ultralytics
 opencv-python-headless
+shapely
